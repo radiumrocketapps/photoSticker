@@ -5,6 +5,7 @@ module.exports = {
   },
   extends: [
     'airbnb',
+    'plugin:flowtype/recommended'
   ],
   globals: {
     Atomics: 'readonly',
@@ -19,6 +20,7 @@ module.exports = {
   },
   plugins: [
     'react',
+    'flowtype'
   ],
   rules: {
     "semi": ["error", "never"],

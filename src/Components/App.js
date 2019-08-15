@@ -11,7 +11,9 @@ const App = () => (
   <>
     <StatusBar barStyle="dark-content" />
     <SafeAreaView>
-      <Text>PhotoSticker App</Text>
+      <Text>
+        PhotoSticker App
+      </Text>
     </SafeAreaView>
   </>
 )

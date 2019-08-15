@@ -133,6 +133,7 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
+        missingDimensionStrategy 'react-native-camera', 'general'
     }
     splits {
         abi {
@@ -190,13 +191,20 @@ android {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.facebook.react:react-native:+"  // From node_modules
-
+    
     if (enableHermes) {
       def hermesPath = "../../node_modules/hermesvm/android/";
       debugImplementation files(hermesPath + "hermes-debug.aar")
       releaseImplementation files(hermesPath + "hermes-release.aar")
     } else {
       implementation jscFlavor
+    }
+}
+
+allprojects {
+    repositories {
+        maven { url "https://jitpack.io" }
+        maven { url "https://maven.google.com" }
     }
 }
 

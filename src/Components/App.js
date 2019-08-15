@@ -1,21 +1,9 @@
 // @flow
-
 import React from 'react'
-import {
-  Text,
-  StatusBar,
-  SafeAreaView,
-} from 'react-native'
+import AppContainer from 'src/navigation'
 
 const App = () => (
-  <>
-    <StatusBar barStyle="dark-content" />
-    <SafeAreaView>
-      <Text>
-        PhotoSticker App
-      </Text>
-    </SafeAreaView>
-  </>
+  <AppContainer />
 )
 
 export default App

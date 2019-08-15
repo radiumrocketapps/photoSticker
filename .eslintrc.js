@@ -5,7 +5,7 @@ module.exports = {
   },
   extends: [
     'airbnb',
-    'plugin:flowtype/recommended'
+    'plugin:flowtype/recommended',
   ],
   globals: {
     Atomics: 'readonly',
@@ -26,6 +26,16 @@ module.exports = {
     "semi": ["error", "never"],
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     'import/no-extraneous-dependencies': 0,
-    "no-unused-vars": [2, { "vars": "all", "args": "after-used" }]
+    "no-unused-vars": [2, { "vars": "all", "args": "after-used" }],
   },
+  settings: {
+    'import/resolver': {
+      alias: {
+        map: [
+          ['src', './src'],
+        ],
+        extensions: ['.ts', '.js', '.jsx', '.json']
+      }
+    }
+  }
 };

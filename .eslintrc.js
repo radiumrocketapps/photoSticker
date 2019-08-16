@@ -27,6 +27,7 @@ module.exports = {
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     'import/no-extraneous-dependencies': 0,
     "no-unused-vars": [2, { "vars": "all", "args": "after-used" }],
+    "react/state-in-constructor": 0,
   },
   settings: {
     'import/resolver': {

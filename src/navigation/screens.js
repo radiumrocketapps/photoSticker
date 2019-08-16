@@ -1,5 +1,5 @@
-export const HOME_SCREEN = 'HOME_SCREEN'
+export const TAKE_PHOTO_SCREEN = 'TAKE_PHOTO_SCREEN'
 
 export default {
-  HOME_SCREEN,
+  TAKE_PHOTO_SCREEN,
 }

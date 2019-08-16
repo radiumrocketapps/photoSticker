@@ -3,14 +3,14 @@ import {
   createAppContainer,
   createStackNavigator,
 } from 'react-navigation'
-import HomeScreen from 'src/Components/HomeScreen'
+import TakePhoto from 'src/Components/TakePhoto'
 import * as SCREENS from 'src/navigation/screens'
 import colors from 'src/res/colors'
 
 const MainStack = createStackNavigator(
   {
-    [SCREENS.HOME_SCREEN]: {
-      screen: HomeScreen,
+    [SCREENS.TAKE_PHOTO_SCREEN]: {
+      screen: TakePhoto,
     },
   },
   {

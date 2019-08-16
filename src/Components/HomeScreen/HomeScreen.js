@@ -6,6 +6,7 @@ import {
   SafeAreaView,
   TouchableOpacity,
 } from 'react-native'
+import Icon from 'react-native-vector-icons/FontAwesome'
 import { RNCamera } from 'react-native-camera'
 import colors from 'src/res/colors'
 import styles from './styles'
@@ -26,7 +27,9 @@ class HomeScreen extends Component<Props> {
         >
           <TouchableOpacity
             style={styles.galleryButton}
-          />
+          >
+            <Icon name="rocket" size={30} color="#900" />
+          </TouchableOpacity>
         </RNCamera>
       </SafeAreaView>
     </>

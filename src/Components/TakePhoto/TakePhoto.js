@@ -24,29 +24,19 @@ type State = {
   flashEnabled: boolean,
 }
 
-class HomeScreen extends Component<Props, State> {
+class TakePhoto extends Component<Props, State> {
   static navigationOptions = () => ({
     title: 'PhotoSticker',
   })
 
-  state = {
-    isBackCamera: false,
-    flashEnabled: false,
-  }
-
-  changeCamera = () => {
-    const { isBackCamera } = this.state
-    this.setState({ isBackCamera: !isBackCamera })
-  }
-
-  toggleFlash = () => {
-    const { flashEnabled } = this.state
-    this.setState({ flashEnabled: !flashEnabled })
-  }
-
-
   render = () => {
-    const { isBackCamera, flashEnabled } = this.state
+    const {
+      toggleFlash,
+      changeCamera,
+      flashEnabled,
+      isBackCamera,
+    } = this.props
+
     return (
       <>
         <StatusBar backgroundColor={colors.greenLight} barStyle="light-content" />
@@ -66,8 +56,12 @@ class HomeScreen extends Component<Props, State> {
             }
           >
             <View style={styles.topButtons}>
-              <TouchableOpacity onPress={this.toggleFlash} style={styles.optionPhotoButton}>
-                <Ionicons name={flashEnabled ? 'ios-flash' : 'ios-flash-off'} size={opTopIconsSize} color={colors.white} />
+              <TouchableOpacity onPress={toggleFlash} style={styles.optionPhotoButton}>
+                <Ionicons
+                  name={flashEnabled ? 'ios-flash' : 'ios-flash-off'}
+                  size={opTopIconsSize}
+                  color={colors.white}
+                />
               </TouchableOpacity>
             </View>
             <View style={styles.bottomButtons}>
@@ -78,7 +72,7 @@ class HomeScreen extends Component<Props, State> {
                 <View style={styles.centerTakePhotoButton} />
               </TouchableOpacity>
               <TouchableOpacity
-                onPress={this.changeCamera}
+                onPress={changeCamera}
                 style={styles.optionPhotoButton}
               >
                 <FontAwesome5 name="sync-alt" size={opBottomIconsSize} color={colors.white} />
@@ -92,4 +86,4 @@ class HomeScreen extends Component<Props, State> {
   }
 }
 
-export default HomeScreen
+export default TakePhoto

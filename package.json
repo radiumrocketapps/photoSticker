@@ -9,6 +9,7 @@
     "flow": "flow",
     "flow-ci": "flow check .",
     "ra": "react-native run-android && adb reverse tcp:9090 tcp:9090",
+    "reactotron": "adb reverse tcp:9090 tcp:9090",
     "ri": "react-native run-ios"
   },
   "husky": {

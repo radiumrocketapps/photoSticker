@@ -8,8 +8,7 @@
     "lint": "eslint .",
     "flow": "flow",
     "flow-ci": "flow check .",
-    "ra": "react-native run-android && adb reverse tcp:9090 tcp:9090",
-    "reactotron": "adb reverse tcp:9090 tcp:9090",
+    "ra": "react-native run-android",
     "ri": "react-native run-ios"
   },
   "husky": {
@@ -28,7 +27,8 @@
     "react-native-vector-icons": "^6.6.0",
     "react-navigation": "^3.11.1",
     "react-redux": "^7.1.0",
-    "redux": "^4.0.4"
+    "redux": "^4.0.4",
+    "redux-devtools-extension": "^2.13.8"
   },
   "devDependencies": {
     "@babel/core": "7.5.5",
@@ -48,9 +48,7 @@
     "husky": "^3.0.3",
     "jest": "24.8.0",
     "metro-react-native-babel-preset": "0.54.1",
-    "react-test-renderer": "16.8.6",
-    "reactotron-react-native": "^3.6.4",
-    "reactotron-redux": "^3.1.1"
+    "react-test-renderer": "16.8.6"
   },
   "jest": {
     "preset": "react-native"

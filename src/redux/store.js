@@ -1,8 +1,10 @@
 // @flow
-import { createStore } from 'redux'
-import Reactotron from 'reactotron-react-native'
+import { createStore, applyMiddleware } from 'redux'
+import { composeWithDevTools } from 'redux-devtools-extension'
 import rootReducer from './modules'
 
-const store = createStore(rootReducer, Reactotron.createEnhancer())
+const middleware = []
+const setMiddleware = composeWithDevTools(applyMiddleware(...middleware))
+const store = createStore(rootReducer, setMiddleware)
 
 export default store

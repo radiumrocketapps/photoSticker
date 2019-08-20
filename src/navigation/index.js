@@ -4,6 +4,7 @@ import {
   createStackNavigator,
 } from 'react-navigation'
 import TakePhoto from 'src/Components/TakePhoto'
+import CustomizePhoto from 'src/Components/CustomizePhoto'
 import * as SCREENS from 'src/navigation/screens'
 import colors from 'src/res/colors'
 
@@ -11,6 +12,9 @@ const MainStack = createStackNavigator(
   {
     [SCREENS.TAKE_PHOTO_SCREEN]: {
       screen: TakePhoto,
+    },
+    [SCREENS.CUSTOMIZE_PHOTO_SCREEN]: {
+      screen: CustomizePhoto,
     },
   },
   {

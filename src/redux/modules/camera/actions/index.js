@@ -8,3 +8,8 @@ export const toggleFlash = () => ({
 export const changeCamera = () => ({
   type: ACTIONS.CHANGE_CAMERA,
 })
+
+export const savePicture = (source: string) => ({
+  type: ACTIONS.SAVE_PICTURE,
+  payload: source,
+})

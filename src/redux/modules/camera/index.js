@@ -4,6 +4,7 @@ import * as ACTIONS from './actions/const'
 export type CameraState = {
   flashEnabled: boolean,
   isBackCamera: boolean,
+  picture: ?string,
 }
 
 type Action = {
@@ -14,10 +15,16 @@ type Action = {
 const initialState = {
   flashEnabled: false,
   isBackCamera: false,
+  picture: undefined,
 }
 
 const reducer = (state: CameraState = initialState, action: Action) => {
   switch (action.type) {
+    case ACTIONS.SAVE_PICTURE:
+      return {
+        ...state,
+        picture: action.payload,
+      }
     case ACTIONS.TOGGLE_FLASH:
       return {
         ...state,

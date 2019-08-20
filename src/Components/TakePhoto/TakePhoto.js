@@ -11,6 +11,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 import { RNCamera } from 'react-native-camera'
+import * as screens from 'src/navigation/screens'
 import colors from 'src/res/colors'
 import styles from './styles'
 
@@ -19,15 +20,28 @@ const opTopIconsSize = 20
 
 type Props = NavigationScreenProps
 
-type State = {
-  isBackCamera: boolean,
-  flashEnabled: boolean,
-}
-
-class TakePhoto extends Component<Props, State> {
+class TakePhoto extends Component<Props> {
   static navigationOptions = () => ({
-    title: 'PhotoSticker',
+    title: 'Take a Photo',
   })
+
+  camera: RNCamera
+
+  takePicture = async () => {
+    if (this.camera) {
+      const { savePicture, navigation } = this.props
+      const options = {
+        quality: 1,
+        base64: false,
+        forceUpOrientation: true,
+        // fixOrientation: false,
+        skipProcessing: true,
+      }
+      const data = await this.camera.takePictureAsync(options)
+      savePicture(data.uri)
+      navigation.navigate(screens.CUSTOMIZE_PHOTO_SCREEN)
+    }
+  }
 
   render = () => {
     const {
@@ -43,6 +57,9 @@ class TakePhoto extends Component<Props, State> {
         <SafeAreaView style={styles.container}>
           {/* <View style={styles.preview}> */}
           <RNCamera
+            ref={(ref) => {
+              this.camera = ref
+            }}
             style={styles.preview}
             type={
               isBackCamera
@@ -68,7 +85,10 @@ class TakePhoto extends Component<Props, State> {
               <TouchableOpacity style={styles.optionPhotoButton}>
                 <FontAwesome name="image" size={opBottomIconsSize} color={colors.white} />
               </TouchableOpacity>
-              <TouchableOpacity style={styles.takePhotoButton}>
+              <TouchableOpacity
+                onPress={this.takePicture}
+                style={styles.takePhotoButton}
+              >
                 <View style={styles.centerTakePhotoButton} />
               </TouchableOpacity>
               <TouchableOpacity

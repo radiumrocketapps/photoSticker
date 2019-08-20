@@ -1,6 +1,10 @@
 // @flow
 import { connect } from 'react-redux'
-import { toggleFlash, changeCamera } from 'src/redux/modules/camera/actions'
+import {
+  toggleFlash,
+  changeCamera,
+  savePicture,
+} from 'src/redux/modules/camera/actions'
 import Component from './TakePhoto'
 
 const mapStateToProps = (state: any) => ({
@@ -11,6 +15,7 @@ const mapStateToProps = (state: any) => ({
 const mapDispatchToProps = {
   toggleFlash,
   changeCamera,
+  savePicture,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Component)

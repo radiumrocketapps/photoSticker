@@ -5,6 +5,7 @@ export type CameraState = {
   flashEnabled: boolean,
   isBackCamera: boolean,
   picture: ?string,
+  customizedPicture: ?string,
 }
 
 type Action = {
@@ -16,10 +17,16 @@ const initialState = {
   flashEnabled: false,
   isBackCamera: false,
   picture: undefined,
+  customizedPicture: undefined,
 }
 
 const reducer = (state: CameraState = initialState, action: Action) => {
   switch (action.type) {
+    case ACTIONS.SAVE_CUSTOMIZED_PICTURE:
+      return {
+        ...state,
+        customizedPicture: action.payload,
+      }
     case ACTIONS.SAVE_PICTURE:
       return {
         ...state,

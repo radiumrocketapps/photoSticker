@@ -46,6 +46,11 @@ const initialState = {
 
 const reducer = (state: StickersState = initialState, action: Action) => {
   switch (action.type) {
+    case ACTIONS.CLEAN_USED_STICKERS:
+      return {
+        ...state,
+        used: initialState.used,
+      }
     case ACTIONS.REMOVE_STICKER: {
       const { id, instanceNumber } = action.payload
       return {
@@ -63,6 +68,12 @@ const reducer = (state: StickersState = initialState, action: Action) => {
         selectedSticker: {
           ...action.payload,
         },
+      }
+    }
+    case ACTIONS.UNSELECT_STICKER: {
+      return {
+        ...state,
+        selectedSticker: initialState.selectedSticker,
       }
     }
     case ACTIONS.ADD_STICKER: {

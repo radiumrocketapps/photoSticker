@@ -28,6 +28,8 @@ target 'PhotoSticker' do
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
+  pod 'react-native-view-shot', :path => '../node_modules/react-native-view-shot'
+
   target 'PhotoStickerTests' do
     inherit! :search_paths
     # Pods for testing

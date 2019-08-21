@@ -6,6 +6,7 @@ import {
 import TakePhoto from 'src/Components/TakePhoto'
 import CustomizePhoto from 'src/Components/CustomizePhoto'
 import StickersModal from 'src/Components/StickersModal'
+import PreviewPhoto from 'src/Components/PreviewPhoto'
 import * as SCREENS from 'src/navigation/screens'
 import colors from 'src/res/colors'
 
@@ -18,6 +19,9 @@ const MainStack = createStackNavigator(
     },
     [SCREENS.CUSTOMIZE_PHOTO_SCREEN]: {
       screen: CustomizePhoto,
+    },
+    [SCREENS.PREVIEW_PHOTO_SCREEN]: {
+      screen: PreviewPhoto,
     },
   },
   {

@@ -13,3 +13,8 @@ export const savePicture = (source: string) => ({
   type: ACTIONS.SAVE_PICTURE,
   payload: source,
 })
+
+export const saveCustomizedPicture = (source: string) => ({
+  type: ACTIONS.SAVE_CUSTOMIZED_PICTURE,
+  payload: source,
+})

@@ -7,6 +7,14 @@ export const addSticker = (sticker: Sticker) => ({
   payload: sticker,
 })
 
+export const cleanUsedStickers = () => ({
+  type: ACTIONS.CLEAN_USED_STICKERS,
+})
+
+export const unselectSticker = () => ({
+  type: ACTIONS.UNSELECT_STICKER,
+})
+
 export const updateStickerPosition = (params: Object) => ({
   type: ACTIONS.UPDATE_STICKER_POSITION,
   payload: params,

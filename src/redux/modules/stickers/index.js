@@ -1,18 +1,33 @@
 // @flow
+import findIndex from 'lodash/findIndex'
 import * as ACTIONS from './actions/const'
 import stickersMock from './mocks'
 
+type Coords = {
+  x: number,
+  y: number,
+}
+
 export type Sticker = {
-  id: string,
+  id: number,
   name: string,
-  image: string,
   tags: string,
-  image: string,
+  source: string | number,
+  position: Coords,
+  ratio: number,
+  baseScale: number,
+  rotate: string,
+  instanceNumber: number,
 }
 
 export type StickersState = {
-  stickers: Sticker[],
-  selectedIndex: ?number
+  list: Object[],
+  used: Sticker[],
+  selectedSticker: {
+    id: number,
+    instanceNumber: number
+  }
+
 }
 
 type Action = {
@@ -21,17 +36,79 @@ type Action = {
 }
 
 const initialState = {
-  stickers: stickersMock,
-  selectedIndex: undefined,
+  list: stickersMock,
+  used: [],
+  selectedSticker: {
+    id: -1,
+    instanceNumber: 0,
+  },
 }
 
 const reducer = (state: StickersState = initialState, action: Action) => {
   switch (action.type) {
-    case ACTIONS.SELECT_STICKER:
+    case ACTIONS.REMOVE_STICKER: {
+      const { id, instanceNumber } = action.payload
       return {
         ...state,
-        selectedIndex: action.payload,
+        // $FlowFixMe
+        used: state.used.filter(
+          (s) => s.id !== id || s.instanceNumber !== instanceNumber,
+        ),
+        selectedSticker: initialState.selectedSticker,
       }
+    }
+    case ACTIONS.SELECT_STICKER: {
+      return {
+        ...state,
+        selectedSticker: {
+          ...action.payload,
+        },
+      }
+    }
+    case ACTIONS.ADD_STICKER: {
+      const existingSticker = state.used.filter((s) => s.id === action.payload.id)
+      const newSticker = {
+        ratio: 1,
+        baseScale: 1,
+        rotate: '0deg',
+        ...action.payload,
+        instanceNumber: existingSticker.length,
+      }
+      const used = [...state.used]
+      used[used.length] = newSticker
+
+      return {
+        ...state,
+        used,
+      }
+    }
+    case ACTIONS.UPDATE_STICKER_POSITION: {
+      const {
+        id,
+        position,
+        baseScale,
+        rotate,
+        instanceNumber,
+      } = action.payload
+
+      const stickerIndex = findIndex(state.used, { id, instanceNumber })
+      const newSticker = {
+        ...state.used[stickerIndex],
+        position,
+        baseScale,
+        rotate,
+      }
+      const used = [...state.used]
+      used[stickerIndex] = newSticker
+      return {
+        ...state,
+        used,
+        selectedSticker: {
+          id,
+          instanceNumber,
+        },
+      }
+    }
     default: {
       return state
     }

@@ -1,20 +1,20 @@
-import { StyleSheet /* Dimensions */ } from 'react-native'
+import { StyleSheet } from 'react-native'
 import colors from 'src/res/colors'
-// const screenWidth = Math.round(Dimensions.get('window').width)
 
 const takeButtonWith = 80
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'column',
-    backgroundColor: 'black',
   },
   photoPreview: {
     flex: 1,
+  },
+  photoContent: {
+    flex: 1,
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingBottom: 25,
+    paddingBottom: 15,
   },
   topButtons: {
     flexDirection: 'row',
@@ -47,6 +47,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: takeButtonWith * 0.7,
     height: takeButtonWith * 0.7,
+  },
+  mirror: {
+    transform: [{ scaleX: -1 }],
   },
 })
 

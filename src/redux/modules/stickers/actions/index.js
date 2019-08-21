@@ -1,8 +1,32 @@
 // @flow
 import * as ACTIONS from './const'
+import type { Sticker } from '..'
 
-// eslint-disable-next-line import/prefer-default-export
-export const savePicture = (index: number) => ({
+export const addSticker = (sticker: Sticker) => ({
+  type: ACTIONS.ADD_STICKER,
+  payload: sticker,
+})
+
+export const updateStickerPosition = (params: Object) => ({
+  type: ACTIONS.UPDATE_STICKER_POSITION,
+  payload: params,
+})
+
+export const selectSticker = (
+  id: number,
+  instanceNumber: number,
+) => ({
   type: ACTIONS.SELECT_STICKER,
-  payload: index,
+  payload: {
+    id,
+    instanceNumber,
+  },
+})
+
+export const removeSticker = (id: number, instanceNumber: number) => ({
+  type: ACTIONS.REMOVE_STICKER,
+  payload: {
+    id,
+    instanceNumber,
+  },
 })

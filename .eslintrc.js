@@ -28,6 +28,9 @@ module.exports = {
     'import/no-extraneous-dependencies': 0,
     "no-unused-vars": [2, { "vars": "all", "args": "after-used" }],
     "react/state-in-constructor": 0,
+    "react/jsx-props-no-spreading": 0,
+    "no-case-declarations": 0,
+    "import/no-cycle": 0,
   },
   settings: {
     'import/resolver': {

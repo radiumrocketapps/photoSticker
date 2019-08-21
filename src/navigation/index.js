@@ -5,8 +5,11 @@ import {
 } from 'react-navigation'
 import TakePhoto from 'src/Components/TakePhoto'
 import CustomizePhoto from 'src/Components/CustomizePhoto'
+import StickersModal from 'src/Components/StickersModal'
 import * as SCREENS from 'src/navigation/screens'
 import colors from 'src/res/colors'
+
+export const HEADER_HIGHT = 60
 
 const MainStack = createStackNavigator(
   {
@@ -21,6 +24,7 @@ const MainStack = createStackNavigator(
     defaultNavigationOptions: {
       headerStyle: {
         backgroundColor: colors.greenLight,
+        height: HEADER_HIGHT,
       },
       headerTintColor: colors.white,
       headerTitleStyle: {
@@ -37,13 +41,15 @@ const RootStack = createStackNavigator(
     Main: {
       screen: MainStack,
     },
-    // MyModal: {
-    //   screen: ModalScreen,
-    // },
+    [SCREENS.STICKERS_MODAL]: {
+      screen: StickersModal,
+    },
   },
   {
     mode: 'modal',
     headerMode: 'none',
+    transparentCard: true,
+    cardStyle: { opacity: 1 },
   },
 )
 

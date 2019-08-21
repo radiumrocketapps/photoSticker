@@ -1,5 +1,11 @@
+export const ADD_STICKER = 'stickers/ADD_STICKER'
 export const SELECT_STICKER = 'stickers/SELECT_STICKER'
+export const REMOVE_STICKER = 'stickers/REMOVE_STICKER'
+export const UPDATE_STICKER_POSITION = 'stickers/UPDATE_STICKER_POSITION'
 
 export default {
+  ADD_STICKER,
   SELECT_STICKER,
+  REMOVE_STICKER,
+  UPDATE_STICKER_POSITION,
 }

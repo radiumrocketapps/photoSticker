@@ -91,6 +91,14 @@ class CustomizePhoto extends Component<Props, State> {
     }
   }
 
+  savePicture = async () => {
+    const { finalSaved, saveToGallery } = this.props
+    const snapshot = await this.capture()
+    if (!finalSaved) {
+      await saveToGallery(snapshot, true)
+    }
+  }
+
   shareCurrentImage = async () => {
     this.setState({ sharing: true })
     const snapshot = await this.capture()
@@ -112,11 +120,6 @@ class CustomizePhoto extends Component<Props, State> {
               return
             }
           }
-        }
-
-        const { finalSaved, saveToGallery } = this.props
-        if (!finalSaved && snapshot) {
-          await saveToGallery(snapshot, true)
         }
 
         const base64data = await Blob.fs.readFile(snapshot, 'base64')
@@ -148,6 +151,7 @@ class CustomizePhoto extends Component<Props, State> {
       picture,
       isBackCamera,
       navigation,
+      finalSaved,
       // unselectSticker,
     } = this.props
 
@@ -189,16 +193,31 @@ class CustomizePhoto extends Component<Props, State> {
                         color={colors.white}
                       />
                     </TouchableOpacity>
-                    <TouchableOpacity
-                      onPress={this.showStickersModal}
-                      style={styles.optionPhotoButton}
-                    >
-                      <MCicon
-                        name="sticker-emoji"
-                        size={opTopIconsSize}
-                        color={colors.white}
-                      />
-                    </TouchableOpacity>
+                    <View style={styles.rightTop}>
+                      <TouchableOpacity
+                        disabled={finalSaved}
+                        onPress={this.savePicture}
+                        style={styles.optionPhotoButton}
+                      >
+                        <MCicon
+                          name="arrow-collapse-down"
+                          size={opTopIconsSize}
+                          color={finalSaved
+                            ? colors.whiteOpacity(5)
+                            : colors.white}
+                        />
+                      </TouchableOpacity>
+                      <TouchableOpacity
+                        onPress={this.showStickersModal}
+                        style={styles.optionPhotoButton}
+                      >
+                        <MCicon
+                          name="sticker-emoji"
+                          size={opTopIconsSize}
+                          color={colors.white}
+                        />
+                      </TouchableOpacity>
+                    </View>
                   </View>
                   <View style={styles.bottomButtons}>
                     <TouchableOpacity

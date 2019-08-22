@@ -23,6 +23,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '100%',
   },
+  rightTop: {
+    flexDirection: 'row',
+  },
   bottomButtons: {
     flexDirection: 'row',
     justifyContent: 'space-evenly',

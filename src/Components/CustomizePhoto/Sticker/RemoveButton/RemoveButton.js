@@ -13,13 +13,14 @@ type State = {}
 export default class RemoveButton extends PureComponent<Props, State> {
   panResponder: any
 
-  componentWillMount = () => {
+  constructor(props: Props) {
+    super(props)
     this.panResponder = PanResponder.create({
       onStartShouldSetPanResponder: () => true,
       onMoveShouldSetPanResponder: () => true,
       onPanResponderGrant: () => this.onRemovePress(),
     })
-  };
+  }
 
   onRemovePress = () => {
     const { removeSticker, id, instanceNumber } = this.props

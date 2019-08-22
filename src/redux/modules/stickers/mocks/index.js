@@ -14,6 +14,7 @@ import jueves from 'src/res/stickers/jueves.png'
 import viernes from 'src/res/stickers/viernes.png'
 import sabado from 'src/res/stickers/sabado.png'
 import domingo from 'src/res/stickers/domingo.png'
+import saturdayDisco from 'src/res/stickers/saturday-disco.png'
 
 const stickersMock = [
   {
@@ -105,6 +106,12 @@ const stickersMock = [
     name: 'saturday',
     tags: 'saturday sabado dia day',
     source: saturday,
+  },
+  {
+    id: 16,
+    name: 'saturday-disco',
+    tags: 'saturday dico sabado dia day',
+    source: saturdayDisco,
   },
 ]
 

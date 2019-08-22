@@ -5,6 +5,7 @@ import {
   changeCamera,
   savePicture,
 } from 'src/redux/modules/camera/actions'
+import { cleanUsedStickers } from 'src/redux/modules/stickers/actions'
 import Component from './TakePhoto'
 
 const mapStateToProps = (state: any) => ({
@@ -16,6 +17,7 @@ const mapDispatchToProps = {
   toggleFlash,
   changeCamera,
   savePicture,
+  cleanUsedStickers,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Component)

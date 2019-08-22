@@ -1,10 +1,12 @@
 // @flow
 import { connect } from 'react-redux'
-import { updateStickerPosition } from 'src/redux/modules/stickers/actions'
+import {
+  updateStickerPosition,
+} from 'src/redux/modules/stickers/actions'
 import Sticker from './Sticker'
 
 type DispatchProps = {
-  updateStickerPosition: Function,
+  updateStickerPosition: typeof updateStickerPosition,
 }
 
 const mapDispatchToProps = {

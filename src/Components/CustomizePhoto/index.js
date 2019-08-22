@@ -5,7 +5,7 @@ import {
   unselectSticker,
   cleanUsedStickers,
 } from 'src/redux/modules/stickers/actions'
-import { saveCustomizedPicture } from 'src/redux/modules/camera/actions'
+import { saveToGallery } from 'src/redux/modules/camera/actions'
 import Component from './CustomizePhoto'
 
 const mapStateToProps = (state: any) => ({
@@ -13,14 +13,14 @@ const mapStateToProps = (state: any) => ({
   isBackCamera: state.camera.isBackCamera,
   used: state.stickers.used,
   selectedSticker: state.stickers.selectedSticker,
-
+  finalSaved: state.camera.finalSaved,
 })
 
 const mapDispatchToProps = {
   selectSticker,
   unselectSticker,
   cleanUsedStickers,
-  saveCustomizedPicture,
+  saveToGallery,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Component)

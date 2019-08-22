@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingBottom: 15,
+    zIndex: 5,
   },
   topButtons: {
     flexDirection: 'row',

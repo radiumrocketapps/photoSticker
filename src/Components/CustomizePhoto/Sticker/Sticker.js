@@ -20,7 +20,6 @@ type Props = ReduxProps & StickerType & {
   selected: boolean,
   onDragStart: Function,
   onDragEnd: Function,
-  onPress: Function,
 }
 
 type State = {
@@ -103,6 +102,7 @@ class Sticker extends React.PureComponent<Props, State> {
       position: 'absolute',
       transform: [{ scale }, { rotate }],
     }
+
     return (
       <Gestures
         key={id}

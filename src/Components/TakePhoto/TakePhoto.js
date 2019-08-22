@@ -1,6 +1,6 @@
 // @flow
 import React, { Component } from 'react'
-import { NavigationScreenProps } from 'react-navigation'
+import { NavigationScreenProps, NavigationEvents } from 'react-navigation'
 import {
   View,
   StatusBar,
@@ -43,6 +43,11 @@ class TakePhoto extends Component<Props> {
     }
   }
 
+  cleanPreview = () => {
+    const { cleanUsedStickers } = this.props
+    cleanUsedStickers()
+  }
+
   render = () => {
     const {
       toggleFlash,
@@ -56,6 +61,9 @@ class TakePhoto extends Component<Props> {
         <StatusBar backgroundColor={colors.greenLight} barStyle="light-content" />
         <SafeAreaView style={styles.container}>
           {/* <View style={styles.preview}> */}
+          <NavigationEvents
+            onWillBlur={this.cleanPreview}
+          />
           <RNCamera
             ref={(ref) => {
               this.camera = ref

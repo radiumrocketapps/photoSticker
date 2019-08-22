@@ -1,37 +1,62 @@
 // @flow
+import get from 'lodash/get'
 import * as ACTIONS from './actions/const'
 
 export type CameraState = {
   flashEnabled: boolean,
   isBackCamera: boolean,
   picture: ?string,
-  customizedPicture: ?string,
+  finalSaved: ?string,
+  isSaving: boolean,
+  finalImage: ?string,
+  error: ?Object,
 }
 
 type Action = {
   type: string,
   payload: any,
+  meta: any,
 }
 
 const initialState = {
   flashEnabled: false,
   isBackCamera: false,
   picture: undefined,
-  customizedPicture: undefined,
+  isSaving: false,
+  finalSaved: undefined,
+  finalImage: undefined,
+  error: undefined,
 }
 
 const reducer = (state: CameraState = initialState, action: Action) => {
   switch (action.type) {
-    case ACTIONS.SAVE_CUSTOMIZED_PICTURE:
-      return {
-        ...state,
-        customizedPicture: action.payload,
-      }
     case ACTIONS.SAVE_PICTURE:
       return {
         ...state,
         picture: action.payload,
       }
+
+    case `${ACTIONS.SAVE_TO_GALLERY}_PENDING`:
+      return {
+        ...state,
+        isSaving: true,
+      }
+
+    case `${ACTIONS.SAVE_TO_GALLERY}_FULFILLED`:
+      return {
+        ...state,
+        isSaving: false,
+        finalImage: action.payload,
+        finalSaved: get(action, 'meta.finalImage', false),
+      }
+
+    case `${ACTIONS.SAVE_TO_GALLERY}_FAILED`:
+      return {
+        ...state,
+        isSaving: false,
+        error: action.payload,
+      }
+
     case ACTIONS.TOGGLE_FLASH:
       return {
         ...state,

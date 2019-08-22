@@ -1,14 +1,21 @@
 // @flow
 import React, { Component } from 'react'
-import { NavigationScreenProps, NavigationEvents } from 'react-navigation'
+import { NavigationScreenProps } from 'react-navigation'
 import {
   View,
   Text,
+  Share,
+  Platform,
   StatusBar,
   SafeAreaView,
   ImageBackground,
+  ActivityIndicator,
   TouchableOpacity,
+  PermissionsAndroid,
+  // TouchableWithoutFeedback,
 } from 'react-native'
+import Blob from 'react-native-fetch-blob'
+import RNShare from 'react-native-share'
 import ViewShot from 'react-native-view-shot'
 import MCicon from 'react-native-vector-icons/MaterialCommunityIcons'
 import AntDesign from 'react-native-vector-icons/AntDesign'
@@ -23,6 +30,7 @@ const opTopIconsSize = 30
 type Props = NavigationScreenProps
 type State = {
   capturing: boolean,
+  sharing: boolean,
 }
 
 class CustomizePhoto extends Component<Props, State> {
@@ -32,6 +40,7 @@ class CustomizePhoto extends Component<Props, State> {
 
   state = {
     capturing: false,
+    sharing: false,
   }
 
   viewShot: any
@@ -57,35 +66,81 @@ class CustomizePhoto extends Component<Props, State> {
           selectedSticker.id === id
           && selectedSticker.instanceNumber === instanceNumber
         }
-        onPress={() => this.selectSticker(parseInt(id, 10), instanceNumber)}
         onDragStart={() => this.selectSticker(parseInt(id, 10), instanceNumber)}
         {...other}
       />
     ))
   }
 
+  setStateAsync = (state: Object) => new Promise<void>((resolve) => {
+    this.setState(state, resolve)
+  })
+
   capture = async () => {
-    const {
-      navigation,
-      unselectSticker,
-      saveCustomizedPicture,
-    } = this.props
+    const { unselectSticker } = this.props
+    let uri
     try {
       unselectSticker()
-      this.setState({ capturing: true }, async () => {
-        const uri = await this.viewShot.capture()
-        saveCustomizedPicture(uri)
-        this.setState({ capturing: false })
-        navigation.navigate(screens.PREVIEW_PHOTO_SCREEN)
-      })
+      await this.setStateAsync({ capturing: true })
+      uri = await this.viewShot.capture()
+      this.setState({ capturing: false })
+      return uri
     } catch (error) {
       this.setState({ capturing: false })
+      return uri
     }
   }
 
-  cleanPreview = () => {
-    const { cleanUsedStickers } = this.props
-    cleanUsedStickers()
+  shareCurrentImage = async () => {
+    this.setState({ sharing: true })
+    const snapshot = await this.capture()
+    if (snapshot) {
+      try {
+        if (Platform.OS === 'android') {
+          const granted = await PermissionsAndroid.check(
+            PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+          )
+          if (!granted) {
+            const response = await PermissionsAndroid.request(
+              PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+              {
+                title: 'Image Sharing Permission',
+                message: 'Needs to access your phone storage in order to share the images you\'ve create',
+              },
+            )
+            if (response !== PermissionsAndroid.RESULTS.GRANTED) {
+              return
+            }
+          }
+        }
+
+        const { finalSaved, saveToGallery } = this.props
+        if (!finalSaved && snapshot) {
+          await saveToGallery(snapshot, true)
+        }
+
+        const base64data = await Blob.fs.readFile(snapshot, 'base64')
+
+        if (Platform.OS === 'android') {
+          await RNShare.open({
+            url: `data:image/jpeg;base64,${base64data}`,
+            message: 'Made with PhotoSicker',
+            type: 'image/jpeg',
+          })
+        }
+        if (Platform.OS === 'ios') {
+          await Share.share(
+            {
+              url: `data:image/jpeg;base64,${base64data}`,
+              title: 'Made with PhotoSicker',
+            },
+          )
+        }
+        this.setState({ sharing: false })
+      } catch (err) {
+        this.setState({ sharing: false })
+      }
+    }
   }
 
   render = () => {
@@ -93,15 +148,13 @@ class CustomizePhoto extends Component<Props, State> {
       picture,
       isBackCamera,
       navigation,
+      // unselectSticker,
     } = this.props
 
-    const { capturing } = this.state
+    const { capturing, sharing } = this.state
     return (
       <SafeAreaView style={styles.container}>
         <StatusBar backgroundColor={colors.greenLight} barStyle="light-content" />
-        <NavigationEvents
-          onDidBlur={this.cleanPreview}
-        />
         <ViewShot
           ref={(ref) => {
             this.viewShot = ref
@@ -120,6 +173,7 @@ class CustomizePhoto extends Component<Props, State> {
               !isBackCamera && styles.mirror,
             ]}
           >
+            {/* <TouchableWithoutFeedback onPress={unselectSticker}> */}
             <View style={[styles.photoContent, !isBackCamera && styles.mirror]}>
               {this.renderStickers()}
               {!capturing && (
@@ -149,15 +203,23 @@ class CustomizePhoto extends Component<Props, State> {
                   <View style={styles.bottomButtons}>
                     <TouchableOpacity
                       style={styles.shareButton}
-                      onPress={this.capture}
+                      onPress={this.shareCurrentImage}
+                      disabled={sharing}
                     >
-                      <Text style={styles.shareText}>Share</Text>
-                      <Entypo name="share" color={colors.black} size={20} />
+                      {sharing
+                        ? (<ActivityIndicator size="small" color={colors.black} />)
+                        : (
+                          <>
+                            <Text style={styles.shareText}>Share</Text>
+                            <Entypo name="share" color={colors.black} size={20} />
+                          </>
+                        )}
                     </TouchableOpacity>
                   </View>
                 </>
               )}
             </View>
+            {/* </TouchableWithoutFeedback> */}
           </ImageBackground>
         </ViewShot>
       </SafeAreaView>

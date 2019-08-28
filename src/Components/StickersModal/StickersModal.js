@@ -12,6 +12,7 @@ import {
 import type { Sticker as StickerType } from 'src/redux/modules/stickers'
 import colors from 'src/res/colors'
 import { HEADER_HIGHT } from 'src/navigation'
+import SearchSticker from '../CustomizePhoto/Sticker/StickerSearch'
 import styles from './styles'
 
 const screenWidth = Math.round(Dimensions.get('window').width)

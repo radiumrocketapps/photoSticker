@@ -8,6 +8,7 @@ import {
   Dimensions,
   FlatList,
   TouchableOpacity,
+  ActivityIndicator,
 } from 'react-native'
 import type { Sticker as StickerType } from 'src/redux/modules/stickers'
 import colors from 'src/res/colors'
@@ -46,19 +47,26 @@ class StickersModal extends Component<Props> {
   keyExtractor = (item: Object) => item.id
 
   render = () => {
-    const { stickers } = this.props
+    const { stickers, search } = this.props
 
     return (
       <SafeAreaView style={styles.container}>
         <StatusBar backgroundColor={colors.gray} barStyle="light-content" />
-        <FlatList
-          keyExtractor={this.keyExtractor}
-          style={styles.flatlist}
-          contentContainerStyle={styles.content}
-          numColumns={4}
-          data={stickers}
-          renderItem={this.renderStickers}
-        />
+        <SearchSticker />
+        {!search
+          ? (
+            <FlatList
+              keyExtractor={this.keyExtractor}
+              style={styles.flatlist}
+              contentContainerStyle={styles.content}
+              numColumns={4}
+              data={stickers}
+              renderItem={this.renderStickers}
+            />
+          )
+          : (
+            <ActivityIndicator size="large" color="#0000ff" />
+          )}
       </SafeAreaView>
     )
   }

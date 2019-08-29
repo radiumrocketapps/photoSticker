@@ -1,30 +1,8 @@
 import React, { Component } from 'react';
 import { TextInput, View, Dimensions } from 'react-native';
 import { Icon } from 'react-native-elements'
-import { StyleSheet } from 'react-native'
 import colors from 'src/res/colors'
-
-
-const screenWidth = Math.round(Dimensions.get('window').width);
-
-const styles = StyleSheet.create({
-  SearchContainer: {
-    fontWeight: 'bold',
-    fontSize: 30,
-    flexDirection: 'row',
-    width: screenWidth * 0.9,
-    display: "flex",
-    color: 'white',
-    alignItems: 'center',
-    borderBottomColor: 'white',
-    borderBottomWidth: 1,
-  },
-  textInput: {
-    color: 'white'
-  }
-});
-
-
+import styles from './style'
 
 export default class SearchInput extends Component {
   constructor(props) {

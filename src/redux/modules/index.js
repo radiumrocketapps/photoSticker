@@ -12,7 +12,7 @@ import stickerSearch from './stickerSearch'
 export type RootReducerState = {
   camera: CameraState,
   stickers: StickersState,
-  StickerSearch: StickerSearchState,
+  stickerSearch: StickerSearchState,
 
 }
 

@@ -18,7 +18,6 @@ const mapStateToProps = (state: StickerSearchState) => {
   return {
     stickerSearch: state.searchText,
   }
-
 }
 
 const mapDispatchToProps = {

@@ -25,7 +25,7 @@ type Props = NavigationScreenProps
 
 class TakePhoto extends Component<Props> {
   static navigationOptions = () => ({
-    title: 'Take a Photoooo',
+    title: 'Take a Photo',
   })
 
   camera: RNCamera

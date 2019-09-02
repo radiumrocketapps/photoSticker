@@ -9,7 +9,8 @@
     "flow": "flow",
     "flow-ci": "flow check .",
     "ra": "react-native run-android",
-    "ri": "react-native run-ios"
+    "ri": "react-native run-ios",
+    "build-android": "(cd android && ./gradlew bundleRelease)"
   },
   "husky": {
     "hooks": {

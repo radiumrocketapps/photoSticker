@@ -42,9 +42,9 @@ const styles = StyleSheet.create({
     backgroundColor: colors.whiteOpacity(9),
   },
   shareText: {
-    fontSize: 16,
+    fontSize: 18,
     marginRight: 5,
-    marginBottom: 3,
+    marginBottom: 1,
   },
   optionPhotoButton: {
     justifyContent: 'center',

@@ -14,7 +14,7 @@ import {
   PermissionsAndroid,
   // TouchableWithoutFeedback,
 } from 'react-native'
-import Blob from 'react-native-fetch-blob'
+import Blob from 'rn-fetch-blob'
 import RNShare from 'react-native-share'
 import ViewShot from 'react-native-view-shot'
 import MCicon from 'react-native-vector-icons/MaterialCommunityIcons'
@@ -124,20 +124,22 @@ class CustomizePhoto extends Component<Props, State> {
 
         const base64data = await Blob.fs.readFile(snapshot, 'base64')
 
-        if (Platform.OS === 'android') {
-          await RNShare.open({
-            url: `data:image/jpeg;base64,${base64data}`,
-            message: 'Made with PhotoSicker',
-            type: 'image/jpeg',
-          })
-        }
-        if (Platform.OS === 'ios') {
-          await Share.share(
-            {
+        if (typeof base64data === 'string') {
+          if (Platform.OS === 'android') {
+            await RNShare.open({
               url: `data:image/jpeg;base64,${base64data}`,
-              title: 'Made with PhotoSicker',
-            },
-          )
+              message: 'Made with PhotoSticker',
+              type: 'image/jpeg',
+            })
+          }
+          if (Platform.OS === 'ios') {
+            await Share.share(
+              {
+                url: `data:image/jpeg;base64,${base64data}`,
+                title: 'Made with PhotoSticker',
+              },
+            )
+          }
         }
         this.setState({ sharing: false })
       } catch (err) {
@@ -158,7 +160,7 @@ class CustomizePhoto extends Component<Props, State> {
     const { capturing, sharing } = this.state
     return (
       <SafeAreaView style={styles.container}>
-        <StatusBar backgroundColor={colors.greenLight} barStyle="light-content" />
+        <StatusBar backgroundColor={colors.blue} barStyle="light-content" />
         <ViewShot
           ref={(ref) => {
             this.viewShot = ref

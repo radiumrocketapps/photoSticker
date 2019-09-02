@@ -8,6 +8,7 @@ const hexToRgb = (hex: string) => {
 }
 
 type Colors = {
+  blue: string,
   greenLight: string,
   white: string,
   black: string,
@@ -17,6 +18,7 @@ type Colors = {
 }
 
 const colors: Colors = {
+  blue: '#80deea',
   greenLight: '#41A337',
   white: '#FFFFFF',
   black: '#000000',

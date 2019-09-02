@@ -9,7 +9,7 @@ import store from 'src/redux/store'
 export default class App extends Component<{}> {
   componentDidMount = () => {
     SplashScreen.hide()
-    const fontName = 'Rubik-Light'
+    const fontName = 'Rubik-Medium'
     GlobalFont.applyGlobal(fontName)
   }
 

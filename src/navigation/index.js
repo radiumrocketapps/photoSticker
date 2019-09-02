@@ -23,7 +23,7 @@ const MainStack = createStackNavigator(
   {
     defaultNavigationOptions: {
       headerStyle: {
-        backgroundColor: colors.greenLight,
+        backgroundColor: colors.blue,
         height: HEADER_HIGHT,
       },
       headerTintColor: colors.white,

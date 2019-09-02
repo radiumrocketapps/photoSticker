@@ -42,6 +42,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.whiteOpacity(9),
   },
   shareText: {
+    fontFamily: 'Rubik-light',
     fontSize: 18,
     marginRight: 5,
     marginBottom: 1,

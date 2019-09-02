@@ -58,7 +58,7 @@ class TakePhoto extends Component<Props> {
 
     return (
       <>
-        <StatusBar backgroundColor={colors.greenLight} barStyle="light-content" />
+        <StatusBar backgroundColor={colors.blue} barStyle="light-content" />
         <SafeAreaView style={styles.container}>
           {/* <View style={styles.preview}> */}
           <NavigationEvents

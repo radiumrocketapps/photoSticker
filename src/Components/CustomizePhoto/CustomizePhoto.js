@@ -95,7 +95,21 @@ class CustomizePhoto extends Component<Props, State> {
     const { finalSaved, saveToGallery } = this.props
     const snapshot = await this.capture()
     if (!finalSaved) {
-      await saveToGallery(snapshot, true)
+      const granted = await PermissionsAndroid.check(
+        PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+      )
+      if (!granted) {
+        const response = await PermissionsAndroid.request(
+          PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+          {
+            title: 'Image Sharing Permission',
+            message: 'Needs to access your phone storage in order to share the images you\'ve create',
+          },
+        )
+        if (response === PermissionsAndroid.RESULTS.GRANTED) {
+          await saveToGallery(snapshot, true)
+        }
+      }
     }
   }
 
@@ -104,24 +118,6 @@ class CustomizePhoto extends Component<Props, State> {
     const snapshot = await this.capture()
     if (snapshot) {
       try {
-        if (Platform.OS === 'android') {
-          const granted = await PermissionsAndroid.check(
-            PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
-          )
-          if (!granted) {
-            const response = await PermissionsAndroid.request(
-              PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
-              {
-                title: 'Image Sharing Permission',
-                message: 'Needs to access your phone storage in order to share the images you\'ve create',
-              },
-            )
-            if (response !== PermissionsAndroid.RESULTS.GRANTED) {
-              return
-            }
-          }
-        }
-
         const base64data = await Blob.fs.readFile(snapshot, 'base64')
 
         if (typeof base64data === 'string') {

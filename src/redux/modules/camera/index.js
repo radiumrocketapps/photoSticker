@@ -37,6 +37,8 @@ const reducer = (state: CameraState = initialState, action: Action) => {
         ...state,
         picture: action.payload.source,
         mirrorView: action.payload.options.mirrorView,
+        finalImage: initialState.finalImage,
+        finalSaved: initialState.finalSaved,
       }
 
     case `${ACTIONS.SAVE_TO_GALLERY}_PENDING`:

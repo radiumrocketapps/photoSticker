@@ -6,6 +6,7 @@ import {
   StatusBar,
   SafeAreaView,
   Dimensions,
+  FlatList,
   TouchableOpacity,
 } from 'react-native'
 import type { Sticker as StickerType } from 'src/redux/modules/stickers'
@@ -31,25 +32,35 @@ class StickersModal extends Component<Props> {
     navigation.goBack()
   }
 
-  renderStickers = () => {
-    const { stickers } = this.props
-    return stickers.map((item) => (
-      <TouchableOpacity
-        key={item.id}
-        onPress={this.setSelectSticker(item)}
-        style={styles.stickerButton}
-      >
-        <Image resizeMode="contain" source={item.source} style={styles.sticker} />
-      </TouchableOpacity>
-    ))
-  }
-
-  render = () => (
-    <SafeAreaView style={styles.container}>
-      <StatusBar backgroundColor={colors.gray} barStyle="light-content" />
-      {this.renderStickers()}
-    </SafeAreaView>
+  renderStickers = ({ item }: Object) => (
+    <TouchableOpacity
+      key={item.id}
+      onPress={this.setSelectSticker(item)}
+      style={styles.stickerButton}
+    >
+      <Image resizeMode="contain" source={item.source} style={styles.sticker} />
+    </TouchableOpacity>
   )
+
+  keyExtractor = (item: Object) => item.id
+
+  render = () => {
+    const { stickers } = this.props
+
+    return (
+      <SafeAreaView style={styles.container}>
+        <StatusBar backgroundColor={colors.gray} barStyle="light-content" />
+        <FlatList
+          keyExtractor={this.keyExtractor}
+          style={styles.flatlist}
+          contentContainerStyle={styles.content}
+          numColumns={4}
+          data={stickers}
+          renderItem={this.renderStickers}
+        />
+      </SafeAreaView>
+    )
+  }
 }
 
 export default StickersModal

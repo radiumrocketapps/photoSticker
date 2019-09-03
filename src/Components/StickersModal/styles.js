@@ -12,6 +12,9 @@ const styles = StyleSheet.create({
     padding: screenWidth * 0.05,
     backgroundColor: colors.withOpacity(colors.gray, 7),
   },
+  flatlist: {
+    flexDirection: 'column',
+  },
   stickerButton: {
     margin: (screenWidth * 0.01),
     width: ((screenWidth - (screenWidth * 0.18)) / 4),

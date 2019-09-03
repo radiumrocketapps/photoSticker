@@ -8,12 +8,11 @@ import {
   Dimensions,
   FlatList,
   TouchableOpacity,
-  ActivityIndicator,
 } from 'react-native'
 import type { Sticker as StickerType } from 'src/redux/modules/stickers'
 import colors from 'src/res/colors'
 import { HEADER_HIGHT } from 'src/navigation'
-import SearchSticker from '../CustomizePhoto/Sticker/StickerSearch'
+import SearchSticker from './StickerSearch'
 import styles from './styles'
 
 const screenWidth = Math.round(Dimensions.get('window').width)
@@ -47,26 +46,19 @@ class StickersModal extends Component<Props> {
   keyExtractor = (item: Object) => item.id
 
   render = () => {
-    const { stickers, search } = this.props
-
+    const { stickers } = this.props
     return (
       <SafeAreaView style={styles.container}>
         <StatusBar backgroundColor={colors.gray} barStyle="light-content" />
         <SearchSticker />
-        {!search
-          ? (
-            <FlatList
-              keyExtractor={this.keyExtractor}
-              style={styles.flatlist}
-              contentContainerStyle={styles.content}
-              numColumns={4}
-              data={stickers}
-              renderItem={this.renderStickers}
-            />
-          )
-          : (
-            <ActivityIndicator size="large" color="#0000ff" />
-          )}
+        <FlatList
+          keyExtractor={this.keyExtractor}
+          style={styles.flatlist}
+          contentContainerStyle={styles.content}
+          numColumns={4}
+          data={stickers}
+          renderItem={this.renderStickers}
+        />
       </SafeAreaView>
     )
   }

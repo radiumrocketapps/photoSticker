@@ -1,7 +1,6 @@
 // @flow
 import { connect } from 'react-redux'
-import { searchSticker } from 'src/redux/modules/stickerSearch/actions'
-import type { StickerSearchState } from '../../../../redux/modules/stickerSearch/'
+import { filterSticker } from 'src/redux/modules/stickers/actions'
 import SearchSticker from './SearchSticker'
 
 type OwnProps = {
@@ -11,17 +10,11 @@ type OwnProps = {
 };
 
 type DispatchProps = {
-  searchSticker: typeof searchSticker,
-}
-
-const mapStateToProps = (state: StickerSearchState) => {
-  return {
-    stickerSearch: state.searchText,
-  }
+  filterSticker: typeof filterSticker,
 }
 
 const mapDispatchToProps = {
-  searchSticker,
+  filterSticker,
 }
 
 export default connect(null, mapDispatchToProps)(SearchSticker)

@@ -6,10 +6,10 @@ const screenWidth = Math.round(Dimensions.get('window').width)
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'flex-start',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    padding: screenWidth * 0.05,
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+    height: '100%',
     backgroundColor: colors.withOpacity(colors.gray, 7),
   },
   flatlist: {

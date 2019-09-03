@@ -23,6 +23,7 @@ export type Sticker = {
 export type StickersState = {
   list: Object[],
   used: Sticker[],
+  filterBy: string,
   selectedSticker: {
     id: number,
     instanceNumber: number
@@ -38,6 +39,7 @@ type Action = {
 const initialState = {
   list: stickersMock,
   used: [],
+  filterBy: '',
   selectedSticker: {
     id: -1,
     instanceNumber: 0,
@@ -46,6 +48,11 @@ const initialState = {
 
 const reducer = (state: StickersState = initialState, action: Action) => {
   switch (action.type) {
+    case ACTIONS.FILTER_STICKER:
+      return {
+        ...state,
+        filterBy: action.payload,
+      }
     case ACTIONS.CLEAN_USED_STICKERS:
       return {
         ...state,

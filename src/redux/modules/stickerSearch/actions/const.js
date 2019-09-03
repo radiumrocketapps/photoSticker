@@ -1,5 +1,0 @@
-export const TEXT_SEARCH_PENDING = 'search/TEXT_SEARCH_PENDING'
-export const TEXT_SEARCH_ERROR = 'search/TEXT_SEARCH_ERROR'
-export const TEXT_SEARCH_FULFILLED = 'search/TEXT_SEARCH_FULFILLED'
-
-

@@ -12,6 +12,7 @@ import {
 import type { Sticker as StickerType } from 'src/redux/modules/stickers'
 import colors from 'src/res/colors'
 import { HEADER_HIGHT } from 'src/navigation'
+import SearchSticker from './StickerSearch'
 import styles from './styles'
 
 const screenWidth = Math.round(Dimensions.get('window').width)
@@ -46,10 +47,10 @@ class StickersModal extends Component<Props> {
 
   render = () => {
     const { stickers } = this.props
-
     return (
       <SafeAreaView style={styles.container}>
         <StatusBar backgroundColor={colors.gray} barStyle="light-content" />
+        <SearchSticker />
         <FlatList
           keyExtractor={this.keyExtractor}
           style={styles.flatlist}

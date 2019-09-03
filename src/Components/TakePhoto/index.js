@@ -7,8 +7,10 @@ import {
 } from 'src/redux/modules/camera/actions'
 import { cleanUsedStickers } from 'src/redux/modules/stickers/actions'
 import Component from './TakePhoto'
+import type { RootReducerState } from '../../redux/modules'
 
-const mapStateToProps = (state: any) => ({
+
+const mapStateToProps = (state: RootReducerState) => ({
   isBackCamera: state.camera.isBackCamera,
   flashEnabled: state.camera.flashEnabled,
 })

@@ -38,3 +38,8 @@ export const removeSticker = (id: number, instanceNumber: number) => ({
     instanceNumber,
   },
 })
+
+export const filterSticker = (text: string) => ({
+  type: ACTIONS.FILTER_STICKER,
+  payload: text,
+})

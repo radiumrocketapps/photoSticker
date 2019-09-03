@@ -10,6 +10,7 @@ export type CameraState = {
   isSaving: boolean,
   finalImage: ?string,
   error: ?Object,
+  mirrorView: boolean,
 }
 
 type Action = {
@@ -25,6 +26,7 @@ const initialState = {
   isSaving: false,
   finalSaved: undefined,
   finalImage: undefined,
+  mirrorView: true,
   error: undefined,
 }
 
@@ -33,7 +35,8 @@ const reducer = (state: CameraState = initialState, action: Action) => {
     case ACTIONS.SAVE_PICTURE:
       return {
         ...state,
-        picture: action.payload,
+        picture: action.payload.source,
+        mirrorView: action.payload.options.mirrorView,
       }
 
     case `${ACTIONS.SAVE_TO_GALLERY}_PENDING`:

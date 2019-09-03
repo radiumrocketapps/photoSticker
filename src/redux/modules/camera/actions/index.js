@@ -11,9 +11,9 @@ export const changeCamera = () => ({
   type: ACTIONS.CHANGE_CAMERA,
 })
 
-export const savePicture = (source: string) => ({
+export const savePicture = (source: string, options: { mirrorView: boolean } = {}) => ({
   type: ACTIONS.SAVE_PICTURE,
-  payload: source,
+  payload: { source, options },
 })
 
 export const saveCustomizedPicture = (source: string) => ({

@@ -151,7 +151,7 @@ class CustomizePhoto extends Component<Props, State> {
   render = () => {
     const {
       picture,
-      isBackCamera,
+      mirrorView,
       navigation,
       finalSaved,
       // unselectSticker,
@@ -176,11 +176,11 @@ class CustomizePhoto extends Component<Props, State> {
             source={{ uri: picture }}
             style={[
               styles.photoPreview,
-              !isBackCamera && styles.mirror,
+              mirrorView && styles.mirror,
             ]}
           >
             {/* <TouchableWithoutFeedback onPress={unselectSticker}> */}
-            <View style={[styles.photoContent, !isBackCamera && styles.mirror]}>
+            <View style={[styles.photoContent, mirrorView && styles.mirror]}>
               {this.renderStickers()}
               {!capturing && (
                 <>

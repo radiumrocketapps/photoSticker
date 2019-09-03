@@ -10,10 +10,10 @@ import Component from './CustomizePhoto'
 
 const mapStateToProps = (state: any) => ({
   picture: state.camera.picture,
-  isBackCamera: state.camera.isBackCamera,
   used: state.stickers.used,
   selectedSticker: state.stickers.selectedSticker,
   finalSaved: state.camera.finalSaved,
+  mirrorView: state.camera.mirrorView,
 })
 
 const mapDispatchToProps = {

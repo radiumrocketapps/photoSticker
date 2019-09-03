@@ -3,10 +3,13 @@ import React, { Component } from 'react'
 import { NavigationScreenProps, NavigationEvents } from 'react-navigation'
 import {
   View,
+  Platform,
   StatusBar,
   SafeAreaView,
   TouchableOpacity,
+  PermissionsAndroid,
 } from 'react-native'
+import ImagePicker from 'react-native-image-picker'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
@@ -29,7 +32,7 @@ class TakePhoto extends Component<Props> {
 
   takePicture = async () => {
     if (this.camera) {
-      const { savePicture, navigation } = this.props
+      const { savePicture, navigation, isBackCamera } = this.props
       const options = {
         quality: 1,
         base64: false,
@@ -38,7 +41,7 @@ class TakePhoto extends Component<Props> {
         skipProcessing: true,
       }
       const data = await this.camera.takePictureAsync(options)
-      savePicture(data.uri)
+      savePicture(data.uri, { mirrorView: !isBackCamera })
       navigation.navigate(screens.CUSTOMIZE_PHOTO_SCREEN)
     }
   }
@@ -47,6 +50,33 @@ class TakePhoto extends Component<Props> {
     const { cleanUsedStickers } = this.props
     cleanUsedStickers()
   }
+
+  openGallery = async () => {
+    const { navigation, savePicture } = this.props
+    if (Platform.OS === 'android') {
+      const granted = await PermissionsAndroid.check(
+        PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+      )
+      if (!granted) {
+        const response = await PermissionsAndroid.request(
+          PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+          {
+            title: 'Image Library Access Permission',
+            message: 'PhotoSticker needs to access your phone storage in order to select from your existing images',
+          },
+        )
+        if (response !== PermissionsAndroid.RESULTS.GRANTED) {
+          return
+        }
+      }
+    }
+    ImagePicker.launchImageLibrary({}, (data) => {
+      if (data.uri) {
+        savePicture(data.uri, { mirrorView: false })
+        navigation.navigate(screens.CUSTOMIZE_PHOTO_SCREEN)
+      }
+    })
+  };
 
   render = () => {
     const {
@@ -90,7 +120,10 @@ class TakePhoto extends Component<Props> {
               </TouchableOpacity>
             </View>
             <View style={styles.bottomButtons}>
-              <TouchableOpacity style={styles.optionPhotoButton}>
+              <TouchableOpacity
+                onPress={this.openGallery}
+                style={styles.optionPhotoButton}
+              >
                 <FontAwesome name="image" size={opBottomIconsSize} color={colors.white} />
               </TouchableOpacity>
               <TouchableOpacity

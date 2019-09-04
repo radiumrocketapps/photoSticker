@@ -4,26 +4,41 @@ import uniqBy from 'lodash/uniqBy'
 import * as ACTIONS from './actions/const'
 import stickersMock from './mocks'
 
-type Coords = {
+export type Coords = {
   x: number,
   y: number,
 }
 
+type Transform = [{
+  translateX: number,
+}, {
+  translateY: number,
+}]
+
 export type Sticker = {
-  id: number,
+  isActive: boolean,
+  id: string,
   name: string,
   tags: string,
-  source: string | number,
-  position: Coords,
+  url?: string,
+  source: string | number | { uri: string },
+  createdAt: string,
+  updatedAt: string,
+  v: number
+}
+
+export type StickerUsed = Sticker & {
   ratio: number,
   baseScale: number,
   rotate: string,
+  position: Coords,
+  transform: Transform,
   instanceNumber: number,
 }
 
 export type StickersState = {
   list: Object[],
-  used: Sticker[],
+  used: StickerUsed[],
   filterBy: string,
   isFetching: boolean,
   selectedSticker: {
@@ -62,10 +77,19 @@ const reducer = (state: StickersState = initialState, action: Action) => {
         isFetching: true,
       }
     case `${ACTIONS.GET_STICKERS}_FULFILLED`:
+
+      const newList = uniqBy([...state.list, ...action.payload.data], 'name')
+        .map((item) => {
+          if (item.url) {
+            return { ...item, source: { uri: item.url } }
+          }
+          return item
+        })
+
       return {
         ...state,
         isFetching: false,
-        list: uniqBy([...state.list, ...action.payload.data], 'name'),
+        list: newList,
       }
     case `${ACTIONS.GET_STICKERS}_REJECTED`:
       return {

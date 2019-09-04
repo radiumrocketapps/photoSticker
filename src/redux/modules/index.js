@@ -9,7 +9,6 @@ import stickers from './stickers'
 export type RootReducerState = {
   camera: CameraState,
   stickers: StickersState,
-
 }
 
 const rootReducer = combineReducers({

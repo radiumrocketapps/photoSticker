@@ -1,8 +1,9 @@
 // @flow
 import { createSelector } from 'reselect'
+import type { RootReducerState } from 'src/redux/modules'
 
-const getText = (state) => state.stickers.filterBy.toUpperCase()
-const getStickets = (state) => state.stickers.list
+const getText = (state: RootReducerState): string => state.stickers.filterBy.toUpperCase()
+const getStickets = (state: RootReducerState) => state.stickers.list
 
 export default createSelector(
   [getText, getStickets],

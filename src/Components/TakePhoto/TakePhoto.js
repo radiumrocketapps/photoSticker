@@ -17,11 +17,12 @@ import { RNCamera } from 'react-native-camera'
 import * as screens from 'src/navigation/screens'
 import colors from 'src/res/colors'
 import styles from './styles'
+import type { ReduxProps } from '.'
 
 const opBottomIconsSize = 25
 const opTopIconsSize = 20
 
-type Props = NavigationScreenProps
+type Props = ReduxProps & NavigationScreenProps
 
 class TakePhoto extends Component<Props> {
   static navigationOptions = () => ({
@@ -37,7 +38,6 @@ class TakePhoto extends Component<Props> {
         quality: 1,
         base64: false,
         forceUpOrientation: true,
-        // fixOrientation: false,
         skipProcessing: true,
       }
       const data = await this.camera.takePictureAsync(options)
@@ -90,7 +90,6 @@ class TakePhoto extends Component<Props> {
       <>
         <StatusBar backgroundColor={colors.blue} barStyle="light-content" />
         <SafeAreaView style={styles.container}>
-          {/* <View style={styles.preview}> */}
           <NavigationEvents
             onWillBlur={this.cleanPreview}
           />
@@ -124,7 +123,11 @@ class TakePhoto extends Component<Props> {
                 onPress={this.openGallery}
                 style={styles.optionPhotoButton}
               >
-                <FontAwesome name="image" size={opBottomIconsSize} color={colors.white} />
+                <FontAwesome
+                  name="image"
+                  size={opBottomIconsSize}
+                  color={colors.white}
+                />
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={this.takePicture}
@@ -136,11 +139,14 @@ class TakePhoto extends Component<Props> {
                 onPress={changeCamera}
                 style={styles.optionPhotoButton}
               >
-                <FontAwesome5 name="sync-alt" size={opBottomIconsSize} color={colors.white} />
+                <FontAwesome5
+                  name="sync-alt"
+                  size={opBottomIconsSize}
+                  color={colors.white}
+                />
               </TouchableOpacity>
             </View>
           </RNCamera>
-          {/* </View> */}
         </SafeAreaView>
       </>
     )

@@ -3,6 +3,7 @@
 import React, { Component } from 'react'
 import { TextInput, View } from 'react-native'
 import { Icon } from 'react-native-elements'
+import colors from 'src/res/colors'
 import styles from './styles'
 import type { ReduxProps } from '.'
 
@@ -26,7 +27,7 @@ export default class SearchInput extends Component<Props, State> {
     return (
       <View style={styles.SearchContainer}>
         <Icon
-          color="white"
+          color={colors.white}
           name="search"
           type="material"
         />
@@ -34,7 +35,7 @@ export default class SearchInput extends Component<Props, State> {
           value={text}
           style={styles.textInput}
           placeholder="Search"
-          placeholderTextColor="white"
+          placeholderTextColor={colors.white}
           onChangeText={this.changeText}
         />
       </View>

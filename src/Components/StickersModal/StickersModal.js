@@ -14,11 +14,12 @@ import colors from 'src/res/colors'
 import { HEADER_HIGHT } from 'src/navigation'
 import SearchSticker from './StickerSearch'
 import styles from './styles'
+import type { ReduxProps } from '.'
 
 const screenWidth = Math.round(Dimensions.get('window').width)
 const screenHeight = Math.round(Dimensions.get('window').height)
 
-type Props = NavigationScreenProps
+type Props = NavigationScreenProps & ReduxProps
 
 class StickersModal extends Component<Props> {
   componentDidMount = () => {
@@ -46,11 +47,7 @@ class StickersModal extends Component<Props> {
     >
       <Image
         resizeMode="contain"
-        source={
-          item.source
-            ? item.source
-            : { uri: item.url }
-        }
+        source={item.source}
         style={styles.sticker}
       />
     </TouchableOpacity>

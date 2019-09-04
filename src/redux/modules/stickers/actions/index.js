@@ -2,7 +2,7 @@
 import * as ACTIONS from './const'
 import * as API from '../api'
 
-import type { Sticker } from '..'
+import type { Sticker, Coords } from '..'
 
 export const addSticker = (sticker: Sticker) => ({
   type: ACTIONS.ADD_STICKER,
@@ -17,7 +17,15 @@ export const unselectSticker = () => ({
   type: ACTIONS.UNSELECT_STICKER,
 })
 
-export const updateStickerPosition = (params: Object) => ({
+type UpdateParams = {
+  id: string,
+  baseScale: number,
+  position: Coords,
+  rotate: string,
+  instanceNumber: number,
+}
+
+export const updateStickerPosition = (params: UpdateParams) => ({
   type: ACTIONS.UPDATE_STICKER_POSITION,
   payload: params,
 })

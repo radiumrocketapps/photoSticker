@@ -1,6 +1,5 @@
-import { StyleSheet /* Dimensions */ } from 'react-native'
+import { StyleSheet } from 'react-native'
 import colors from 'src/res/colors'
-// const screenWidth = Math.round(Dimensions.get('window').width)
 
 const takeButtonWith = 80
 

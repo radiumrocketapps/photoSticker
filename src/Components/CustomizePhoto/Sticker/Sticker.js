@@ -86,7 +86,6 @@ class Sticker extends React.PureComponent<Props, State> {
     const {
       id,
       source,
-      url,
       selected,
       instanceNumber,
     } = this.props
@@ -124,7 +123,7 @@ class Sticker extends React.PureComponent<Props, State> {
             />
           )}
           <Animated.Image
-            source={source || { uri: url }}
+            source={source}
             style={styles.stickerPreview}
           />
         </Animated.View>

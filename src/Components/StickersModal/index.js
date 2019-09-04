@@ -2,12 +2,22 @@
 import { connect } from 'react-redux'
 import { selectSticker, addSticker, getStickers } from 'src/redux/modules/stickers/actions'
 import { filterStickers } from 'src/redux/modules/stickers/selectors'
+import type { RootReducerState } from 'src/redux/modules'
 import Component from './StickersModal'
-import type { RootReducerState } from '../../redux/modules'
+
+type StateProps = {
+  stickers: $PropertyType<RootReducerState, "stickers">
+}
 
 const mapStateToProps = (state: RootReducerState) => ({
   stickers: filterStickers(state),
 })
+
+type DispatchProps = {
+  selectSticker: typeof selectSticker,
+  addSticker: typeof addSticker,
+  getStickers: typeof getStickers,
+}
 
 const mapDispatchToProps = {
   selectSticker,
@@ -16,3 +26,4 @@ const mapDispatchToProps = {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Component)
+export type ReduxProps = StateProps & DispatchProps

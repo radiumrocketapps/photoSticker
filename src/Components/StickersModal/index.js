@@ -3,10 +3,11 @@ import { connect } from 'react-redux'
 import { selectSticker, addSticker, getStickers } from 'src/redux/modules/stickers/actions'
 import { filterStickers } from 'src/redux/modules/stickers/selectors'
 import type { RootReducerState } from 'src/redux/modules'
+import type { StickersState } from 'src/redux/modules/stickers'
 import Component from './StickersModal'
 
 type StateProps = {
-  stickers: $PropertyType<RootReducerState, "stickers">
+  stickers: $PropertyType<StickersState, "stickers">
 }
 
 const mapStateToProps = (state: RootReducerState) => ({

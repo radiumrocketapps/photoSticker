@@ -5,6 +5,7 @@ import {
   View,
   Text,
   Share,
+  Image,
   Platform,
   StatusBar,
   SafeAreaView,
@@ -12,9 +13,9 @@ import {
   ActivityIndicator,
   TouchableOpacity,
   PermissionsAndroid,
-  // TouchableWithoutFeedback,
 } from 'react-native'
 import Blob from 'rn-fetch-blob'
+import waterMark from 'src/res/stickers/water-mark.png'
 import RNShare from 'react-native-share'
 import ViewShot from 'react-native-view-shot'
 import MCicon from 'react-native-vector-icons/MaterialCommunityIcons'
@@ -109,13 +110,19 @@ class CustomizePhoto extends Component<Props, State> {
         if (response === PermissionsAndroid.RESULTS.GRANTED) {
           await saveToGallery(snapshot, true)
         }
+      } else {
+        await saveToGallery(snapshot, true)
       }
     }
   }
 
   shareCurrentImage = async () => {
+    const { finalImage, finalSaved } = this.props
     this.setState({ sharing: true })
-    const snapshot = await this.capture()
+    let snapshot = finalImage
+    if (!finalSaved) {
+      snapshot = await this.capture()
+    }
     if (snapshot) {
       try {
         const base64data = await Blob.fs.readFile(snapshot, 'base64')
@@ -144,13 +151,17 @@ class CustomizePhoto extends Component<Props, State> {
     }
   }
 
+  goBack = () => {
+    const { navigation, cleanCamera } = this.props
+    cleanCamera()
+    navigation.goBack()
+  }
+
   render = () => {
     const {
       picture,
       mirrorView,
-      navigation,
       finalSaved,
-      // unselectSticker,
     } = this.props
 
     const { capturing, sharing } = this.state
@@ -175,14 +186,13 @@ class CustomizePhoto extends Component<Props, State> {
               mirrorView && styles.mirror,
             ]}
           >
-            {/* <TouchableWithoutFeedback onPress={unselectSticker}> */}
             <View style={[styles.photoContent, mirrorView && styles.mirror]}>
               {this.renderStickers()}
               {!capturing && (
                 <>
                   <View style={styles.topButtons}>
                     <TouchableOpacity
-                      onPress={() => navigation.goBack()}
+                      onPress={this.goBack}
                       style={styles.optionPhotoButton}
                     >
                       <AntDesign
@@ -236,7 +246,15 @@ class CustomizePhoto extends Component<Props, State> {
                 </>
               )}
             </View>
-            {/* </TouchableWithoutFeedback> */}
+            <Image
+              source={waterMark}
+              resizeMode="contain"
+              style={[
+                styles.waterMark,
+                !mirrorView && styles.waterMarkNoMirror,
+                mirrorView && styles.waterMarkMirror,
+              ]}
+            />
           </ImageBackground>
         </ViewShot>
       </SafeAreaView>

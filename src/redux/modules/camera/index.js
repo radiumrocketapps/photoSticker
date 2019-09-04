@@ -32,6 +32,8 @@ const initialState = {
 
 const reducer = (state: CameraState = initialState, action: Action) => {
   switch (action.type) {
+    case ACTIONS.CLEAN_CAMERA:
+      return initialState
     case ACTIONS.SAVE_PICTURE:
       return {
         ...state,

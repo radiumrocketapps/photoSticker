@@ -28,9 +28,10 @@ const styles = StyleSheet.create({
   },
   bottomButtons: {
     flexDirection: 'row',
-    justifyContent: 'space-evenly',
+    justifyContent: 'flex-start',
     alignItems: 'center',
     width: '100%',
+    paddingLeft: 15,
   },
   shareButton: {
     flexDirection: 'row',
@@ -38,7 +39,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: 150,
     height: 50,
-    borderRadius: 25,
+    borderBottomLeftRadius: 0,
+    borderBottomRightRadius: 25,
+    borderTopLeftRadius: 0,
+    borderTopRightRadius: 25,
     backgroundColor: colors.whiteOpacity(9),
   },
   shareText: {
@@ -55,6 +59,20 @@ const styles = StyleSheet.create({
   },
   mirror: {
     transform: [{ scaleX: -1 }],
+  },
+  waterMarkMirror: {
+    transform: [{ scaleX: -1 }],
+    left: 5,
+  },
+  waterMarkNoMirror: {
+    right: 5,
+  },
+  waterMark: {
+    position: 'absolute',
+    bottom: 0,
+    width: '30%',
+    marginLeft: 20,
+    marginRight: 20,
   },
 })
 

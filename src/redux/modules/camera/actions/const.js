@@ -1,4 +1,5 @@
 export const TOGGLE_FLASH = 'camera/TOGGLE_FLASH'
+export const CLEAN_CAMERA = 'camera/CLEAN_CAMERA'
 export const CHANGE_CAMERA = 'camera/CHANGE_CAMERA'
 export const SAVE_PICTURE = 'camera/SAVE_PICTURE'
 export const SAVE_TO_GALLERY = 'camera/SAVE_TO_GALLERY'
@@ -6,6 +7,7 @@ export const SAVE_CUSTOMIZED_PICTURE = 'camera/SAVE_CUSTOMIZED_PICTURE'
 
 export default {
   TOGGLE_FLASH,
+  CLEAN_CAMERA,
   SAVE_PICTURE,
   CHANGE_CAMERA,
   SAVE_TO_GALLERY,

@@ -2,6 +2,9 @@
 import { saveToCameraRoll } from 'src/helpers/storage'
 import * as ACTIONS from './const'
 
+export const cleanCamera = () => ({
+  type: ACTIONS.CLEAN_CAMERA,
+})
 
 export const toggleFlash = () => ({
   type: ACTIONS.TOGGLE_FLASH,

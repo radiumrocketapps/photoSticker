@@ -1,5 +1,7 @@
 // @flow
 import * as ACTIONS from './const'
+import * as API from '../api'
+
 import type { Sticker } from '..'
 
 export const addSticker = (sticker: Sticker) => ({
@@ -42,4 +44,9 @@ export const removeSticker = (id: number, instanceNumber: number) => ({
 export const filterSticker = (text: string) => ({
   type: ACTIONS.FILTER_STICKER,
   payload: text,
+})
+
+export const getStickers = (search: string) => ({
+  type: ACTIONS.GET_STICKERS,
+  payload: API.getStickers(search),
 })

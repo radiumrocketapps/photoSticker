@@ -20,6 +20,7 @@ type Props = ReduxProps & StickerType & {
   selected: boolean,
   onDragStart: Function,
   onDragEnd: Function,
+  url: string,
 }
 
 type State = {
@@ -85,6 +86,7 @@ class Sticker extends React.PureComponent<Props, State> {
     const {
       id,
       source,
+      url,
       selected,
       instanceNumber,
     } = this.props
@@ -122,7 +124,7 @@ class Sticker extends React.PureComponent<Props, State> {
             />
           )}
           <Animated.Image
-            source={source}
+            source={source || { uri: url }}
             style={styles.stickerPreview}
           />
         </Animated.View>

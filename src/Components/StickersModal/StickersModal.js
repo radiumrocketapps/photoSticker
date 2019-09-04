@@ -21,6 +21,11 @@ const screenHeight = Math.round(Dimensions.get('window').height)
 type Props = NavigationScreenProps
 
 class StickersModal extends Component<Props> {
+  componentDidMount = () => {
+    const { getStickers } = this.props
+    getStickers()
+  }
+
   setSelectSticker = (sticker: StickerType) => () => {
     const { addSticker, navigation } = this.props
     const x = (screenWidth) / 2 - 75
@@ -39,7 +44,15 @@ class StickersModal extends Component<Props> {
       onPress={this.setSelectSticker(item)}
       style={styles.stickerButton}
     >
-      <Image resizeMode="contain" source={item.source} style={styles.sticker} />
+      <Image
+        resizeMode="contain"
+        source={
+          item.source
+            ? item.source
+            : { uri: item.url }
+        }
+        style={styles.sticker}
+      />
     </TouchableOpacity>
   )
 

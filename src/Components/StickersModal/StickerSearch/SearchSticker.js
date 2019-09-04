@@ -15,8 +15,9 @@ export default class SearchInput extends Component<Props, State> {
   state = { text: '' }
 
   changeText = (value: string) => {
-    const { filterSticker } = this.props
+    const { filterSticker, getStickers } = this.props
     filterSticker(value)
+    getStickers(value)
     this.setState({ text: value })
   }
 

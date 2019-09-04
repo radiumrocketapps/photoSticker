@@ -159,19 +159,19 @@ const stickersMock = [
   },
   {
     id: 20,
-    name: 'fryday',
+    name: 'monday-cup',
     tags: 'monday cup lunes taza cafe dia day',
     source: mondayCup,
   },
   {
     id: 21,
-    name: 'fryday',
+    name: 'saturday-night',
     tags: 'sabado saturday noche night dia day',
     source: saturdayNight,
   },
   {
     id: 22,
-    name: 'fryday',
+    name: 'wednesday-camel',
     tags: 'miercoles camel wednesday camello dia day',
     source: wednesdayCamel,
   },

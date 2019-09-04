@@ -1,5 +1,6 @@
 // @flow
 import findIndex from 'lodash/findIndex'
+import uniqBy from 'lodash/uniqBy'
 import * as ACTIONS from './actions/const'
 import stickersMock from './mocks'
 
@@ -24,6 +25,7 @@ export type StickersState = {
   list: Object[],
   used: Sticker[],
   filterBy: string,
+  isFetching: boolean,
   selectedSticker: {
     id: number,
     instanceNumber: number
@@ -40,6 +42,7 @@ const initialState = {
   list: stickersMock,
   used: [],
   filterBy: '',
+  isFetching: false,
   selectedSticker: {
     id: -1,
     instanceNumber: 0,
@@ -52,6 +55,22 @@ const reducer = (state: StickersState = initialState, action: Action) => {
       return {
         ...state,
         filterBy: action.payload,
+      }
+    case `${ACTIONS.GET_STICKERS}_PENDING`:
+      return {
+        ...state,
+        isFetching: true,
+      }
+    case `${ACTIONS.GET_STICKERS}_FULFILLED`:
+      return {
+        ...state,
+        isFetching: false,
+        list: uniqBy([...state.list, ...action.payload.data], 'name'),
+      }
+    case `${ACTIONS.GET_STICKERS}_REJECTED`:
+      return {
+        ...state,
+        isFetching: false,
       }
     case ACTIONS.CLEAN_USED_STICKERS:
       return {

@@ -1,4 +1,5 @@
 export const ADD_STICKER = 'stickers/ADD_STICKER'
+export const GET_STICKERS = 'stickers/GET_STICKERS'
 export const SELECT_STICKER = 'stickers/SELECT_STICKER'
 export const REMOVE_STICKER = 'stickers/REMOVE_STICKER'
 export const UNSELECT_STICKER = 'stickers/UNSELECT_STICKER'
@@ -8,6 +9,7 @@ export const FILTER_STICKER = 'stickers/FILTER_STICKER'
 
 export default {
   ADD_STICKER,
+  GET_STICKERS,
   SELECT_STICKER,
   REMOVE_STICKER,
   FILTER_STICKER,

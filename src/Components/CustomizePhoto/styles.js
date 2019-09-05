@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
   shareText: {
     fontFamily: 'Rubik-light',
     fontSize: 18,
+    color: colors.black,
     marginRight: 5,
     marginBottom: 1,
   },

@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import {
   selectSticker,
   unselectSticker,
+  filterSticker,
 } from 'src/redux/modules/stickers/actions'
 import { saveToGallery, cleanCamera } from 'src/redux/modules/camera/actions'
 import type { CameraState } from 'src/redux/modules/camera'
@@ -31,11 +32,13 @@ type DispatchProps = {
   unselectSticker: typeof unselectSticker,
   saveToGallery: typeof saveToGallery,
   cleanCamera: typeof cleanCamera,
+  filterSticker: typeof filterSticker,
 }
 
 const mapDispatchToProps = {
   selectSticker,
   unselectSticker,
+  filterSticker,
   saveToGallery,
   cleanCamera,
 }

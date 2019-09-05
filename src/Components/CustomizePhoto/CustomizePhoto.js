@@ -47,7 +47,8 @@ class CustomizePhoto extends Component<Props, State> {
   viewShot: any
 
   showStickersModal = () => {
-    const { navigation } = this.props
+    const { navigation, filterSticker } = this.props
+    filterSticker('')
     navigation.push(screens.STICKERS_MODAL)
   }
 

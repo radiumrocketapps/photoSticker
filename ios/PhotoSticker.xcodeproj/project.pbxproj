@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* PhotoStickerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* PhotoStickerTests.m */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
-		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		1E9116E2781306A339A39588 /* libPods-PhotoSticker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E6FAFA08AF68BFA9441C5DE /* libPods-PhotoSticker.a */; };
@@ -37,6 +36,7 @@
 		5B481BC52307005200F4E272 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5B481BB52307005200F4E272 /* EvilIcons.ttf */; };
 		5B481BC62307005200F4E272 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5B481BB62307005200F4E272 /* SimpleLineIcons.ttf */; };
 		5B481BC72307005200F4E272 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5B481BB72307005200F4E272 /* MaterialIcons.ttf */; };
+		5BB3E498232163A400F5B06D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BB3E497232163A400F5B06D /* LaunchScreen.storyboard */; };
 		5BBA1666231D9A85004D5D0F /* Rubik-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BBA165C231D9A84004D5D0F /* Rubik-Black.ttf */; };
 		5BBA1667231D9A85004D5D0F /* Rubik-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BBA165D231D9A84004D5D0F /* Rubik-LightItalic.ttf */; };
 		5BBA1668231D9A85004D5D0F /* Rubik-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BBA165E231D9A85004D5D0F /* Rubik-Medium.ttf */; };
@@ -90,7 +90,6 @@
 		13B07F961A680F5B00A75B9A /* PhotoSticker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoSticker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = PhotoSticker/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = PhotoSticker/AppDelegate.m; sourceTree = "<group>"; };
-		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = PhotoSticker/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = PhotoSticker/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = PhotoSticker/main.m; sourceTree = "<group>"; };
@@ -119,6 +118,7 @@
 		5B481BB52307005200F4E272 /* EvilIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = EvilIcons.ttf; sourceTree = "<group>"; };
 		5B481BB62307005200F4E272 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SimpleLineIcons.ttf; sourceTree = "<group>"; };
 		5B481BB72307005200F4E272 /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialIcons.ttf; sourceTree = "<group>"; };
+		5BB3E497232163A400F5B06D /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5BBA165C231D9A84004D5D0F /* Rubik-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Rubik-Black.ttf"; path = "../../../android/app/src/main/assets/fonts/Rubik-Black.ttf"; sourceTree = "<group>"; };
 		5BBA165D231D9A84004D5D0F /* Rubik-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Rubik-LightItalic.ttf"; path = "../../../android/app/src/main/assets/fonts/Rubik-LightItalic.ttf"; sourceTree = "<group>"; };
 		5BBA165E231D9A85004D5D0F /* Rubik-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Rubik-Medium.ttf"; path = "../../../android/app/src/main/assets/fonts/Rubik-Medium.ttf"; sourceTree = "<group>"; };
@@ -214,8 +214,8 @@
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
-				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				5BB3E497232163A400F5B06D /* LaunchScreen.storyboard */,
 			);
 			name = PhotoSticker;
 			sourceTree = "<group>";
@@ -488,6 +488,7 @@
 				5B481BC22307005200F4E272 /* FontAwesome5_Regular.ttf in Resources */,
 				5B481BC02307005200F4E272 /* Ionicons.ttf in Resources */,
 				5BBA1668231D9A85004D5D0F /* Rubik-Medium.ttf in Resources */,
+				5BB3E498232163A400F5B06D /* LaunchScreen.storyboard in Resources */,
 				5B481BC52307005200F4E272 /* EvilIcons.ttf in Resources */,
 				5B481BBB2307005200F4E272 /* Entypo.ttf in Resources */,
 				5BBA166C231D9A85004D5D0F /* Rubik-BoldItalic.ttf in Resources */,
@@ -506,7 +507,6 @@
 				5B481BC72307005200F4E272 /* MaterialIcons.ttf in Resources */,
 				5B481BC12307005200F4E272 /* FontAwesome5_Solid.ttf in Resources */,
 				5B481BBD2307005200F4E272 /* MaterialCommunityIcons.ttf in Resources */,
-				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				7A857E072A2545DFB8A5184A /* AntDesign.ttf in Resources */,
 				6FAE11F6540849928F3CDDAF /* Entypo.ttf in Resources */,
 				2E1418E7D97F47CA8E6121D5 /* EvilIcons.ttf in Resources */,
@@ -801,18 +801,6 @@
 			targetProxy = 2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		13B07FB11A68108700A75B9A /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				13B07FB21A68108700A75B9A /* Base */,
-			);
-			name = LaunchScreen.xib;
-			path = PhotoSticker;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {

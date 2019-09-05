@@ -1,6 +1,7 @@
 // @flow
 import React, { Component } from 'react'
 import { NavigationScreenProps, NavigationEvents } from 'react-navigation'
+import SplashScreen from 'react-native-splash-screen'
 import {
   View,
   Platform,
@@ -78,6 +79,10 @@ class TakePhoto extends Component<Props> {
     })
   };
 
+  onCameraReady = () => {
+    SplashScreen.hide()
+  }
+
   render = () => {
     const {
       toggleFlash,
@@ -97,6 +102,7 @@ class TakePhoto extends Component<Props> {
             ref={(ref) => {
               this.camera = ref
             }}
+            onCameraReady={this.onCameraReady}
             style={styles.preview}
             type={
               isBackCamera

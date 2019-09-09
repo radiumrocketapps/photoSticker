@@ -1,4 +1,4 @@
-package com.photosticker;
+package com.radiumrocket.photosticker;
 
 import com.facebook.react.ReactActivity;
 import org.devio.rn.splashscreen.SplashScreen;

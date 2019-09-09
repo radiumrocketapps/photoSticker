@@ -1,4 +1,4 @@
-package com.photosticker;
+package com.radiumrocket.photosticker;
 
 import android.app.Application;
 import android.util.Log;

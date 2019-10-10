@@ -97,18 +97,22 @@ class CustomizePhoto extends Component<Props, State> {
     const { finalSaved, saveToGallery } = this.props
     const snapshot = await this.capture()
     if (!finalSaved) {
-      const granted = await PermissionsAndroid.check(
-        PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
-      )
-      if (!granted) {
-        const response = await PermissionsAndroid.request(
+      if (Platform.OS === 'android') {
+        const granted = await PermissionsAndroid.check(
           PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
-          {
-            title: 'Image Sharing Permission',
-            message: 'Needs to access your phone storage in order to share the images you\'ve create',
-          },
         )
-        if (response === PermissionsAndroid.RESULTS.GRANTED) {
+        if (!granted) {
+          const response = await PermissionsAndroid.request(
+            PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+            {
+              title: 'Image Sharing Permission',
+              message: 'Needs to access your phone storage in order to share the images you\'ve create',
+            },
+          )
+          if (response === PermissionsAndroid.RESULTS.GRANTED) {
+            await saveToGallery(snapshot, true)
+          }
+        } else {
           await saveToGallery(snapshot, true)
         }
       } else {

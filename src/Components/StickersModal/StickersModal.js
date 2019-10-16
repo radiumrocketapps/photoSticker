@@ -2,6 +2,7 @@
 import React, { Component } from 'react'
 import { NavigationScreenProps } from 'react-navigation'
 import {
+  View,
   Image,
   StatusBar,
   SafeAreaView,
@@ -9,6 +10,7 @@ import {
   FlatList,
   TouchableOpacity,
 } from 'react-native'
+import { Icon } from 'react-native-elements'
 import type { Sticker as StickerType } from 'src/redux/modules/stickers'
 import colors from 'src/res/colors'
 import { HEADER_HIGHT } from 'src/navigation'
@@ -56,11 +58,22 @@ class StickersModal extends Component<Props> {
   keyExtractor = (item: Object) => item.id
 
   render = () => {
-    const { stickers } = this.props
+    const { stickers, navigation } = this.props
     return (
       <SafeAreaView style={styles.container}>
         <StatusBar backgroundColor={colors.gray} barStyle="light-content" />
-        <SearchSticker />
+        <View style={styles.header}>
+          <View style={styles.emptyBox} />
+          <SearchSticker />
+          <TouchableOpacity onPress={() => navigation.goBack()} style={styles.closeIcon}>
+            <Icon
+              color={colors.white}
+              name="close"
+              type="material"
+              iconStyle={styles.closeIcon}
+            />
+          </TouchableOpacity>
+        </View>
         <FlatList
           keyExtractor={this.keyExtractor}
           style={styles.flatlist}

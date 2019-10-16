@@ -12,7 +12,7 @@ import {
 } from 'react-native'
 import ImagePicker from 'react-native-image-picker'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
-import Ionicons from 'react-native-vector-icons/Ionicons'
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 import { RNCamera } from 'react-native-camera'
 import * as screens from 'src/navigation/screens'
@@ -104,6 +104,7 @@ class TakePhoto extends Component<Props> {
             }}
             onCameraReady={this.onCameraReady}
             style={styles.preview}
+            captureAudio={false}
             type={
               isBackCamera
                 ? RNCamera.Constants.Type.back
@@ -117,8 +118,8 @@ class TakePhoto extends Component<Props> {
           >
             <View style={styles.topButtons}>
               <TouchableOpacity onPress={toggleFlash} style={styles.optionPhotoButton}>
-                <Ionicons
-                  name={flashEnabled ? 'ios-flash' : 'ios-flash-off'}
+                <MaterialIcons
+                  name={flashEnabled ? 'flash-on' : 'flash-off'}
                   size={opTopIconsSize}
                   color={colors.white}
                 />

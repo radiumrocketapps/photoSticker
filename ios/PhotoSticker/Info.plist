@@ -21,7 +21,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSApplicationCategoryType</key>
 	<string></string>
 	<key>LSRequiresIPhoneOS</key>
@@ -39,10 +39,12 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>The app uses your camera to allow you to modify it and add stickers to it.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>This app requires to access your photo library to show image on editor</string>
+	<string>The app uses your photos to allow you to modify it and add stickers to it.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Rubik-Light.ttf</string>
@@ -83,11 +85,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-  <key>NSMicrophoneUsageDescription</key>
-  <string>Need microphone access for uploading videos</string>
-  <key>NSCameraUsageDescription</key>
-  <string>Need camera access for uploading Images</string>
-  <key>NSPhotoLibraryUsageDescription</key>
-  <string>Need Library access for uploading Images</string>
 </dict>
 </plist>

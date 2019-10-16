@@ -3,9 +3,10 @@ const fs = require('fs')
 
 const removeFile = (path) => {
   fs.unlink(path, (err) => {
-    if (err) throw err
-    // if no error, file has been deleted successfully
-    console.log('File deleted: ', path)
+    if (!err) {
+      // if no error, file has been deleted successfully
+      console.log('File deleted: ', path)
+    }
   })
 }
 const paths = [

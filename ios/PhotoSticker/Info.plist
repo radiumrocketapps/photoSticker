@@ -40,11 +40,11 @@
 		</dict>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>The app uses your camera to allow you to modify it and add stickers to it.</string>
+	<string>This app uses the camera to take photos, to which you can add emojis and stickers to share or save it on your phone.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>The app uses your photos to allow you to modify it and add stickers to it.</string>
+	<string>This app uses the photos for you to add emojis and stickers on them to share or save on your phone.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Rubik-Light.ttf</string>

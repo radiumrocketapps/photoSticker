@@ -47,6 +47,18 @@ const styles = StyleSheet.create({
     width: takeButtonWith * 0.7,
     height: takeButtonWith * 0.7,
   },
+  errorView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'white',
+  },
+  checkingView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'black',
+  },
 })
 
 export default styles

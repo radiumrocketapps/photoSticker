@@ -1,8 +1,9 @@
 // @flow
 import React, { Component } from 'react'
+import { request, PERMISSIONS, RESULTS } from 'react-native-permissions'
 import { NavigationScreenProps, NavigationEvents } from 'react-navigation'
-import SplashScreen from 'react-native-splash-screen'
 import {
+  Text,
   View,
   Platform,
   StatusBar,
@@ -23,14 +24,65 @@ import type { ReduxProps } from '.'
 const opBottomIconsSize = 25
 const opTopIconsSize = 20
 
+type State = {
+  permission: {
+    enable: boolean,
+    message: string,
+    checking: boolean,
+  }
+}
+
 type Props = ReduxProps & NavigationScreenProps
 
-class TakePhoto extends Component<Props> {
+class TakePhoto extends Component<Props, State> {
   static navigationOptions = () => ({
     title: 'Take a Photo',
   })
 
   camera: RNCamera
+
+  state = {
+    permission: {
+      message: '',
+      enable: false,
+      checking: true,
+    },
+  }
+
+  componentDidMount = async () => {
+    try {
+      const permission = Platform.OS === 'android'
+        ? PERMISSIONS.ANDROID.CAMERA
+        : PERMISSIONS.IOS.CAMERA
+
+      const result = await request(permission)
+      if (result === RESULTS.GRANTED) {
+        this.setState({
+          permission: {
+            enable: true,
+            message: 'Success',
+            checking: false,
+          },
+        })
+      } else {
+        this.setState({
+          permission: {
+            enable: false,
+            message: result,
+            checking: false,
+          },
+        })
+      }
+    } catch (error) {
+      this.setState({
+        permission: {
+          enable: false,
+          message: error,
+          checking: false,
+        },
+      })
+    }
+  }
 
   takePicture = async () => {
     if (this.camera) {
@@ -77,10 +129,26 @@ class TakePhoto extends Component<Props> {
         navigation.navigate(screens.CUSTOMIZE_PHOTO_SCREEN)
       }
     })
-  };
+  }
 
-  onCameraReady = () => {
-    SplashScreen.hide()
+  checkingPermission = () => {
+    const { permission } = this.state
+    if (permission.checking) {
+      return (
+        <View style={[styles.checkingView]}>
+          <Text>
+            Checking permission
+          </Text>
+        </View>
+      )
+    }
+    return (
+      <View style={[styles.errorView]}>
+        <Text>
+          {permission.message && `Camera permission ${permission.message}`}
+        </Text>
+      </View>
+    )
   }
 
   render = () => {
@@ -91,6 +159,8 @@ class TakePhoto extends Component<Props> {
       isBackCamera,
     } = this.props
 
+    const { permission } = this.state
+
     return (
       <>
         <StatusBar backgroundColor={colors.blue} barStyle="light-content" />
@@ -98,62 +168,63 @@ class TakePhoto extends Component<Props> {
           <NavigationEvents
             onWillBlur={this.cleanPreview}
           />
-          <RNCamera
-            ref={(ref) => {
-              this.camera = ref
-            }}
-            onCameraReady={this.onCameraReady}
-            style={styles.preview}
-            captureAudio={false}
-            type={
-              isBackCamera
-                ? RNCamera.Constants.Type.back
-                : RNCamera.Constants.Type.front
-            }
-            flashMode={
-              flashEnabled
-                ? RNCamera.Constants.FlashMode.on
-                : RNCamera.Constants.FlashMode.off
-            }
-          >
-            <View style={styles.topButtons}>
-              <TouchableOpacity onPress={toggleFlash} style={styles.optionPhotoButton}>
-                <MaterialIcons
-                  name={flashEnabled ? 'flash-on' : 'flash-off'}
-                  size={opTopIconsSize}
-                  color={colors.white}
-                />
-              </TouchableOpacity>
-            </View>
-            <View style={styles.bottomButtons}>
-              <TouchableOpacity
-                onPress={this.openGallery}
-                style={styles.optionPhotoButton}
-              >
-                <FontAwesome
-                  name="image"
-                  size={opBottomIconsSize}
-                  color={colors.white}
-                />
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={this.takePicture}
-                style={styles.takePhotoButton}
-              >
-                <View style={styles.centerTakePhotoButton} />
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={changeCamera}
-                style={styles.optionPhotoButton}
-              >
-                <FontAwesome5
-                  name="sync-alt"
-                  size={opBottomIconsSize}
-                  color={colors.white}
-                />
-              </TouchableOpacity>
-            </View>
-          </RNCamera>
+          {permission.enable ? (
+            <RNCamera
+              ref={(ref) => {
+                this.camera = ref
+              }}
+              style={styles.preview}
+              captureAudio={false}
+              type={
+                isBackCamera
+                  ? RNCamera.Constants.Type.back
+                  : RNCamera.Constants.Type.front
+              }
+              flashMode={
+                flashEnabled
+                  ? RNCamera.Constants.FlashMode.on
+                  : RNCamera.Constants.FlashMode.off
+              }
+            >
+              <View style={styles.topButtons}>
+                <TouchableOpacity onPress={toggleFlash} style={styles.optionPhotoButton}>
+                  <MaterialIcons
+                    name={flashEnabled ? 'flash-on' : 'flash-off'}
+                    size={opTopIconsSize}
+                    color={colors.white}
+                  />
+                </TouchableOpacity>
+              </View>
+              <View style={styles.bottomButtons}>
+                <TouchableOpacity
+                  onPress={this.openGallery}
+                  style={styles.optionPhotoButton}
+                >
+                  <FontAwesome
+                    name="image"
+                    size={opBottomIconsSize}
+                    color={colors.white}
+                  />
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={this.takePicture}
+                  style={styles.takePhotoButton}
+                >
+                  <View style={styles.centerTakePhotoButton} />
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={changeCamera}
+                  style={styles.optionPhotoButton}
+                >
+                  <FontAwesome5
+                    name="sync-alt"
+                    size={opBottomIconsSize}
+                    color={colors.white}
+                  />
+                </TouchableOpacity>
+              </View>
+            </RNCamera>
+          ) : this.checkingPermission()}
         </SafeAreaView>
       </>
     )

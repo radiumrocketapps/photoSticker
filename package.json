@@ -22,7 +22,7 @@
   "dependencies": {
     "@react-native-community/cameraroll": "^1.2.1",
     "babel-plugin-module-resolver": "^3.2.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "react": "^16.8.6",
     "react-native": "^0.60.5",
     "react-native-camera": "git+https://git@github.com/react-native-community/react-native-camera.git",
